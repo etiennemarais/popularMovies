@@ -1,5 +1,5 @@
 .idea
-config.properties
+Secrets.java
 .DS_Store
 ### Android ###
 # Generated files

@@ -11,16 +11,13 @@ import com.olx.etiennemarais.popularmovies.Movies.Movie;
 
 import java.util.List;
 
-public class MoviesAdapter extends ArrayAdapter<Movie>
-{
-    public MoviesAdapter(Activity context, List<Movie> movies)
-    {
+public class MoviesAdapter extends ArrayAdapter<Movie> {
+    public MoviesAdapter(Activity context, List<Movie> movies) {
         super(context, 0, movies);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         Movie movie = getItem(position);
 
         if (convertView == null) {
@@ -32,7 +29,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie>
         }
 
         TextView title = (TextView) convertView.findViewById(R.id.movieTitle);
-        title.setText(movie.title);
+        title.setText(movie.getTitle());
 
         return convertView;
     }

@@ -30,7 +30,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         }
 
         TextView title = (TextView) convertView.findViewById(R.id.movieTitle);
-        title.setText(movie.getTitle());
+        title.setText(movie.title);
 
         return convertView;
     }

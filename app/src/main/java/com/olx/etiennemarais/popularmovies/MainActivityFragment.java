@@ -2,17 +2,18 @@ package com.olx.etiennemarais.popularmovies;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.activeandroid.util.Log;
 import com.olx.etiennemarais.popularmovies.Api.Api;
 import com.olx.etiennemarais.popularmovies.Api.MoviesResponse;
 import com.olx.etiennemarais.popularmovies.Movies.Movie;
 import com.olx.etiennemarais.popularmovies.Util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -35,10 +36,19 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         setHasOptionsMenu(true);
         setupRestAdapter();
-        bindMoviesToAdapter(rootView);
+
+        if (moviesList == null) {
+            moviesList = new ArrayList<Movie>();
+        }
+
+        movieAdapter = new MoviesAdapter(getActivity(), moviesList);
+        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
+        gridView.setAdapter(movieAdapter);
+
         setAppTitleToPopular();
 
         if (moviesList.isEmpty()) {
+            Log.i(LOG_TAG, "Movies list is empty");
             updateMoviesFromApi(Movie.ORDER_POPULARITY_DESC);
         }
 
@@ -49,15 +59,10 @@ public class MainActivityFragment extends Fragment {
         getActivity().setTitle(R.string.title_activity_movie_list_popular);
     }
 
-    private void bindMoviesToAdapter(View rootView) {
-        movieAdapter = new MoviesAdapter(getActivity(), moviesList);
-        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
-        gridView.setAdapter(movieAdapter);
-    }
-
     private void setupRestAdapter() {
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setConverter(Util.getGsonConverter())
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                //.setConverter(Util.getGsonConverter()) TODO add my own gson deserializer here.
                 .setEndpoint(Api.API_ENDPOINT)
                 .build();
 
@@ -68,6 +73,7 @@ public class MainActivityFragment extends Fragment {
         movieDBApi.getMovies(order, new Callback<MoviesResponse>() {
             @Override
             public void success(MoviesResponse responseObject, Response response) {
+                Log.i(LOG_TAG, "Successfully called the API");
                 moviesList = responseObject.results;
                 movieAdapter.clear();
                 movieAdapter.addAll(moviesList);

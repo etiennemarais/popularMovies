@@ -31,8 +31,7 @@ public class MainActivityFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public static Fragment newInstance()
-    {
+    public static Fragment newInstance() {
         return new MainActivityFragment();
     }
 
@@ -73,7 +72,6 @@ public class MainActivityFragment extends Fragment {
 
     private void setupRestAdapter() {
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setConverter(Util.getGsonConverter())
                 .setEndpoint(Api.API_ENDPOINT)
                 .build();

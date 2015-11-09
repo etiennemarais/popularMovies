@@ -12,6 +12,7 @@ import com.olx.etiennemarais.popularmovies.Movies.Movie;
 import java.util.List;
 
 public class MoviesAdapter extends ArrayAdapter<Movie> {
+
     public MoviesAdapter(Activity context, List<Movie> movies) {
         super(context, 0, movies);
     }

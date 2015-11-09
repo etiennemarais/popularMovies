@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.activeandroid.util.Log;
 import com.olx.etiennemarais.popularmovies.Api.Api;
@@ -25,17 +26,6 @@ public class MainActivityFragment extends Fragment {
     private Api movieDBApi;
     private List<Movie> moviesList;
 
-    Movie[] movies = {
-//        new Movie("Bladerunner"),
-//        new Movie("Star wars"),
-//        new Movie("Lord of the Rings 1"),
-//        new Movie("Lord of the Rings 2"),
-//        new Movie("Lord of the Rings 3"),
-//        new Movie("The Hobbit"),
-//        new Movie("The Matrix"),
-//        new Movie("The Haunting"),
-    };
-
     public MainActivityFragment() {
         setHasOptionsMenu(true);
     }
@@ -44,15 +34,25 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         setHasOptionsMenu(true);
-
         setupRestAdapter();
+        bindMoviesToAdapter(rootView);
+        setAppTitleToPopular();
 
-//        movieAdapter = new MoviesAdapter(getActivity(), Arrays.asList(movies));
-//
-//        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
-//        gridView.setAdapter(movieAdapter);
+        if (moviesList.isEmpty()) {
+            updateMoviesFromApi(Movie.ORDER_POPULARITY_DESC);
+        }
 
         return rootView;
+    }
+
+    private void setAppTitleToPopular() {
+        getActivity().setTitle(R.string.title_activity_movie_list_popular);
+    }
+
+    private void bindMoviesToAdapter(View rootView) {
+        movieAdapter = new MoviesAdapter(getActivity(), moviesList);
+        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
+        gridView.setAdapter(movieAdapter);
     }
 
     private void setupRestAdapter() {
@@ -69,10 +69,8 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void success(MoviesResponse responseObject, Response response) {
                 moviesList = responseObject.results;
-//                mAdapter.setDataset(mMoviesList);
-//                mLayoutManager.scrollToPosition(0);
-//                persistMovies(mMoviesList);
-//                swipeRefreshLayout.setRefreshing(false);
+                movieAdapter.clear();
+                movieAdapter.addAll(moviesList);
             }
 
             @Override

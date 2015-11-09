@@ -7,6 +7,7 @@
     <string name="pref_sortorder_label">Sort order</string>
     <string name="pref_sortorder_mostPopular">0</string>
     <string name="pref_sortorder_highestRated">1</string>
+    <string name="title_activity_movie_list_popular">Popular Movies</string>
     <string-array name="pref_sortorder_options">
         <item>Most popular</item>
         <item>Highest-rated</item>

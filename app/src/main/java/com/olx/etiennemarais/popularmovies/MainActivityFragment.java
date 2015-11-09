@@ -41,14 +41,9 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         setHasOptionsMenu(true);
         setupRestAdapter();
+        initializeMoviesListIfNull();
 
-        if (moviesList == null) {
-            moviesList = new ArrayList<Movie>();
-        }
-
-        movieAdapter = new MoviesAdapter(getActivity(), moviesList);
-        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
-        gridView.setAdapter(movieAdapter);
+        setupGridviewWithAdapter(rootView);
 
         setAppTitleToPopular();
 
@@ -58,6 +53,18 @@ public class MainActivityFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    private void setupGridviewWithAdapter(View rootView) {
+        movieAdapter = new MoviesAdapter(getActivity(), moviesList);
+        GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
+        gridView.setAdapter(movieAdapter);
+    }
+
+    private void initializeMoviesListIfNull() {
+        if (moviesList == null) {
+            moviesList = new ArrayList<Movie>();
+        }
     }
 
     private void setAppTitleToPopular() {

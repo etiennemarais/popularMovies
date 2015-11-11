@@ -1,6 +1,7 @@
 package com.olx.etiennemarais.popularmovies;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class MoviesAdapter extends ArrayAdapter<Movie> {
 
-    public MoviesAdapter(Activity context, List<Movie> movies) {
+    public MoviesAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
     }
 
@@ -34,7 +35,6 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         ImageView posterImage = (ImageView) convertView.findViewById(R.id.movie_card_backdrop_image_view);
         Picasso.with(parent.getContext())
             .load(movie.getBackdropPath())
-            .placeholder(R.drawable.placholder_movie)
             .into(posterImage);
 
         TextView title = (TextView) convertView.findViewById(R.id.movie_card_title_text_view);

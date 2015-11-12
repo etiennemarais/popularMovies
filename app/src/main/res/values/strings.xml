@@ -10,6 +10,8 @@
     <string name="title_activity_movie_list_popular">Popular Movies</string>
     <string name="title_activity_movie_list_rating">Top Rated Movies</string>
     <string name="movie_card_backdrop_image_view_description">Movie placeholder</string>
+    <string name="movie_detail_poster_image_view_description">Movie poster</string>
+    <string name="movie_detail_overview_header">Synopsis</string>
     <string-array name="pref_sortorder_options">
         <item>Most popular</item>
         <item>Highest-rated</item>

@@ -102,10 +102,9 @@ public class MainActivityFragment extends Fragment implements SharedPreferences.
         gridView.setAdapter(movieAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                // TODO need to put the movie in as parcelable and pass the whole object to the detail intent
                 Movie movie = movieAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class)
-                    .putExtra(Intent.EXTRA_TEXT, movie.externalId);
+                    .putExtra(Movie.MOVIE, movie);
 
                 startActivity(intent);
             }

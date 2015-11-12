@@ -12,11 +12,13 @@ public class DetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Fragment detailFragment = new DetailActivityFragment();
+        if (savedInstanceState == null) {
+            Fragment detailFragment = new DetailActivityFragment();
 
-        getSupportFragmentManager().beginTransaction()
-            .add(R.id.detail_content, detailFragment)
-            .commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.detail_content, detailFragment)
+                    .commit();
+        }
     }
 
     @Override

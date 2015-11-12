@@ -1,6 +1,7 @@
 package com.olx.etiennemarais.popularmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ public class DetailActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+        Intent intent = getActivity().getIntent();
+
         setupRestAdapter();
 
         return rootView;
@@ -37,7 +40,7 @@ public class DetailActivityFragment extends Fragment {
                 .setConverter(Util.getGsonConverter())
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(Api.API_ENDPOINT)
-                .build();
+            .build();
 
         movieDBApi = restAdapter.create(Api.class);
     }

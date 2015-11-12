@@ -1,6 +1,7 @@
 package com.olx.etiennemarais.popularmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.olx.etiennemarais.popularmovies.Api.Api;
@@ -98,6 +100,15 @@ public class MainActivityFragment extends Fragment implements SharedPreferences.
         movieAdapter = new MoviesAdapter(this.context, moviesList);
         GridView gridView = (GridView) rootView.findViewById(R.id.moviesGridView);
         gridView.setAdapter(movieAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Movie movie = movieAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), DetailActivity.class)
+                    .putExtra(Intent.EXTRA_TEXT, movie.externalId);
+
+                startActivity(intent);
+            }
+        });
     }
 
     private void initializeMoviesListIfNull() {

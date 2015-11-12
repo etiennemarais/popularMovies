@@ -1,5 +1,7 @@
 package com.olx.etiennemarais.popularmovies.Movies;
 
+import java.util.Date;
+
 public class Movie {
     public static final String ORDER_POPULARITY_DESC = "popularity.desc";
     public static final String ORDER_RATING_DESC = "vote_average.desc";
@@ -15,8 +17,7 @@ public class Movie {
     public String overview;
     public float popularity;
     public float voteAverage;
-    //public Date releaseDate;
-    public boolean isFavorite;
+    public Date releaseDate;
 
     public String getPosterPath() {
         return BASE_IMAGE_PATH + COVER_DEFAULT_SIZE + posterPath;

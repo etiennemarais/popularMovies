@@ -36,10 +36,6 @@ public class MainActivityFragment extends Fragment implements SharedPreferences.
         setHasOptionsMenu(true);
     }
 
-    public static Fragment newInstance() {
-        return new MainActivityFragment();
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -3,8 +3,6 @@ package com.olx.etiennemarais.popularmovies.Movies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 public class Movie implements Parcelable {
     public static final String ORDER_POPULARITY_DESC = "popularity.desc";
     public static final String ORDER_RATING_DESC = "vote_average.desc";

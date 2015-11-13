@@ -128,7 +128,7 @@ public class MainActivityFragment extends Fragment implements SharedPreferences.
     private void setupRestAdapter() {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setConverter(Util.getGsonConverter())
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                //.setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(Api.API_ENDPOINT)
                 .build();
 

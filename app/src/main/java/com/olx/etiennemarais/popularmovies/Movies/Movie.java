@@ -21,7 +21,7 @@ public class Movie implements Parcelable {
     public String overview;
     public float popularity;
     public float voteAverage;
-    public Date releaseDate;
+    public String releaseDate;
 
     public String getPosterPath() {
         return BASE_IMAGE_PATH + COVER_DEFAULT_SIZE + posterPath;
@@ -46,7 +46,8 @@ public class Movie implements Parcelable {
         dest.writeString(this.overview);
         dest.writeFloat(this.popularity);
         dest.writeFloat(this.voteAverage);
-        dest.writeLong(releaseDate != null ? releaseDate.getTime() : -1);
+        dest.writeString(this.releaseDate);
+        //dest.writeLong(releaseDate != null ? releaseDate.getTime() : -1);
     }
 
     public Movie() {
@@ -61,8 +62,9 @@ public class Movie implements Parcelable {
         this.overview = in.readString();
         this.popularity = in.readFloat();
         this.voteAverage = in.readFloat();
-        long tmpReleaseDate = in.readLong();
-        this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
+        //long tmpReleaseDate = in.readLong();
+        this.releaseDate = in.readString();
+        //this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
     }
 
     public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {

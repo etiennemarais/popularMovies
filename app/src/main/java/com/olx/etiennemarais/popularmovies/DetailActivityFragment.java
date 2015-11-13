@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.TextView;
 
 import com.olx.etiennemarais.popularmovies.Movies.Movie;
 import com.squareup.picasso.Picasso;
-
-import java.util.Date;
 
 public class DetailActivityFragment extends Fragment {
     private static final String LOG_TAG = DetailActivityFragment.class.getSimpleName();
@@ -52,9 +49,11 @@ public class DetailActivityFragment extends Fragment {
         TextView synopsis = (TextView) view.findViewById(R.id.movie_detail_overview_text_view);
         synopsis.setText(movie.overview);
 
-//        String releaseDate = DateFormat.getLongDateFormat(getActivity()).format(movie.releaseDate);
-//        TextView movieReleaseDateLabel = (TextView) view.findViewById(R.id.movie_detail_release_date_text_view);
-//        movieReleaseDateLabel.setText(releaseDate);
+        TextView movieReleaseDateLabel = (TextView) view.findViewById(R.id.movie_detail_release_date_text_view);
+        movieReleaseDateLabel.setText(movie.releaseDate);
+
+        TextView rating = (TextView) view.findViewById(R.id.movie_detail_rating_text_view);
+        rating.setText(getString(R.string.movie_detail_rating, movie.voteAverage));
 
         return view;
     }

@@ -58,6 +58,7 @@ public class MainActivityFragment extends Fragment implements SharedPreferences.
 
         if (moviesList.isEmpty()) {
             Log.i(LOG_TAG, "Movies list is empty");
+            // TODO load from db rather with fallback to api
             updateMoviesFromApi(Movie.ORDER_POPULARITY_DESC);
         }
 

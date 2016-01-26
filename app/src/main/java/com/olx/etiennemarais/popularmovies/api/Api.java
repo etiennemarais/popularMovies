@@ -4,6 +4,7 @@ import com.olx.etiennemarais.popularmovies.Secrets;
 
 import retrofit.Callback;
 import retrofit.http.GET;
+import retrofit.http.Path;
 import retrofit.http.Query;
 
 public interface Api {
@@ -12,4 +13,7 @@ public interface Api {
 
     @GET("/discover/movie?api_key=" + API_KEY)
     void getMovies(@Query("sort_by") String order, Callback<MoviesResponse> cb);
+
+    @GET("/movie/{id}/videos?api_key=" + API_KEY)
+    void getTrailers(@Path("id") int id, Callback<VideosResponse> cb);
 }
